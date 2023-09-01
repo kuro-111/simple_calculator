@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+  }
+
+  
+html {
+    background: url('./anothercat.jpg');
+    background-size:cover;
+    
+    height: 100vh;
+    padding:0;
+    margin:0;
+  }
+
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    margin-bottom: 30px;
+   
+  }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.display {
+    display:flex;
+    border-bottom: 20px;
+    border-color: black;
+    border-style: inherit;
+    margin-bottom: 30px;
+
+}
+
+
+.calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+button {
+    display: flex;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.numFirstRow {
+    display: flex;
+    flex-direction: row;
+    gap: 20px
+}
+
+
+.numSecondRow {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+
+.numLastRow {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+
+.zero {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px
+}
+
+.operators {
+    display: flex;
+    padding: px;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 20px;
+}
