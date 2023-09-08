@@ -34,10 +34,13 @@ body {
 
 .display {
     display:flex;
-    border-bottom: 20px;
+    flex-direction: row;
+    border-bottom: 10px;
     border-color: black;
     border-style: inherit;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    background-color: darkgrey;
 
 }
 
@@ -45,17 +48,31 @@ body {
 .calculator {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 20px;
+    align-items:flex-end;
+    flex-direction: column;
+    background-color: cadetblue;
+    padding: 12px;
+    padding-top: 18px;
+    border-radius: 10px;
+    gap: 8px;
 }
 
 
 button {
     display: flex;
-    padding: 30px;
+    padding: 22px;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    border-color: rgb(196, 251, 255);
+    transition: all 0.4s;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: rgb(158, 83, 127);
+    color: white;
 }
 
 .numFirstRow {
@@ -87,13 +104,50 @@ button {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    margin-left: 77px;
     gap: 20px
 }
 
 .operators {
     display: flex;
-    padding: px;
     flex-direction: column;
-    margin-top: 20px;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+
+.numberOp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.numberButtons {
+    margin-bottom: 58px;
+}
+
+.divide {
+    padding: 20px;
+}
+
+.multiply {
+    padding: 20px;
+}
+
+.subtract {
+    padding: 20px;
+}
+
+.add {
+    padding: 20px;
+}
+
+.equal {
+    padding: 20px;
 }
