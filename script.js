@@ -11,17 +11,17 @@ function numInput(numKey) {
      }
 }
 
-function arithmetic(num1, opKey, num2) {
-     if (opKey === "divide") {
+function arithmetic(num1, operator, num2) {
+     if (operator === "divide") {
           const divide = num1 / num2;
           return divide;
-     } else if (opKey === "multiply") {
+     } else if (operator === "multiply") {
           const multiply = num1 * num2;
           return multiply;
-     } else if (opKey === "add") {
+     } else if (operator === "add") {
           const add = num1 + num2;
           return add;
-     } else if (opKey === "subtract") {
+     } else if (operator === "subtract") {
           const subtract = num1 - num2;
           return subtract;
      }
@@ -29,10 +29,11 @@ function arithmetic(num1, opKey, num2) {
 
 let num1;
 let strNum1 = "";
-let operator;
+let operator = "";
 let num2;
 let strNum2 = "";
 let operation = false;
+let result;
 
 //make an input variable and keep track of user input next --to continue
 //display the inputs on the html
@@ -50,26 +51,36 @@ function clickButton(event) {
      if (numClass === "numero" && operation == false) {
           strNum1 = strNum1 + numKey;
           num1 = numInput(strNum1);
-     } else {
-          num1 = 0;
-     }
-
-     console.log(num1);
-     // once operation button is pressed, move onto value 2
-     if (opClass === "operation" && num1 >= 0) {
-          operation = true;
-          console.log(opKey);
-     } else {
-          return;
-     }
-
-     console.log(operation);
-
-     // If operation btn pressed, start building out second string
-     if (operation == true) {
+     } else if (numClass === "numero" && operation == true) {
           strNum2 = strNum2 + numKey;
           num2 = numInput(strNum2);
      }
+
+     console.log(num1);
+
+     // once operation button is pressed, move onto value 2
+     if (opClass === "operation" && num1 >= 0) {
+          operation = true;
+          operator = opKey;
+          console.log(operator);
+     }
+
+     console.log(operation);
+     console.log(num2);
+
+     if (num1 >= 0 && num2 >= 0 && opKey === "equal") {
+          console.log("I made it!");
+          result = arithmetic(num1, operator, num2);
+          console.log(result);
+          num1 = result;
+          num2 = null;
+          strNum2 = "";
+          console.log(num2);
+     }
+
+     console.log(num1);
+
+     // If operation btn pressed, start building out second string
 
      // Display numbers and operator as they are pressed
 
