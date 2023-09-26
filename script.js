@@ -34,6 +34,7 @@ let num2;
 let strNum2 = "";
 let operation = false;
 let result;
+let symbol = "";
 
 //make an input variable and keep track of user input next --to continue
 //display the inputs on the html
@@ -45,15 +46,31 @@ function clickButton(event) {
      const opKey = event.target.attributes["data-key"].value;
      const calcDisplay = document.querySelector(".display");
 
-     //store input for 1st number, operator, then 2nd number
+     switch (opKey) {
+          case "divide":
+               symbol = `÷`;
+               break;
+          case "multiply":
+               symbol = `×`;
+               break;
+          case "add":
+               symbol = `+`;
+               break;
+          case "subtract":
+               symbol = `−`;
+               break;
+          default:
+     }
 
      //store first number input, concating onto outside string until an operation btn is pressed
      if (numClass === "numero" && operation == false) {
           strNum1 = strNum1 + numKey;
           num1 = numInput(strNum1);
+          calcDisplay.textContent = `${num1}`;
      } else if (numClass === "numero" && operation == true) {
           strNum2 = strNum2 + numKey;
           num2 = numInput(strNum2);
+          calcDisplay.textContent = `${num1}${symbol}${num2}`;
      }
 
      console.log(num1);
@@ -62,25 +79,25 @@ function clickButton(event) {
      if (opClass === "operation" && num1 >= 0) {
           operation = true;
           operator = opKey;
+          calcDisplay.textContent = `${num1}${symbol}`;
           console.log(operator);
      }
 
      console.log(operation);
      console.log(num2);
-
+     // once equal button is pressed, compute the values and store computed value as value 1 while resetting 2nd value
      if (num1 >= 0 && num2 >= 0 && opKey === "equal") {
           console.log("I made it!");
           result = arithmetic(num1, operator, num2);
           console.log(result);
           num1 = result;
+          calcDisplay.textContent = `${num1}`;
           num2 = null;
           strNum2 = "";
           console.log(num2);
      }
 
      console.log(num1);
-
-     // If operation btn pressed, start building out second string
 
      // Display numbers and operator as they are pressed
 
