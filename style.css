@@ -39,10 +39,25 @@ body {
     border-color: black;
     border-style: inherit;
     margin-bottom: 15px;
-    margin-right: 20px;
+    width: 280px;
     background-color: darkgrey;
-    font-size: 25px;
+    font-size: 30px;
 
+}
+
+.equalBox {
+    display: flex;
+    flex-direction: row;
+    margin-top: -60px;
+    width: 280px;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.equal {
+    font-size: 20px;
+    padding: 20px;
+    width: 100%;
 }
 
 
@@ -110,46 +125,65 @@ button:hover {
     gap: 20px
 }
 
+
+.buttonRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;  
+    gap: 20px
+}
+
+
 .operators {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:flex-start;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 15px;
     gap: 12px;
     margin-bottom: 28px;
 }
+
+
+
 
 
 .numberOp {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    
+   
 
+}
+
+.operation {
+    font-size: 17px;
+    font-weight: bolder;
 }
 
 
 .numberButtons {
-    margin-bottom: 58px;
+    margin-bottom: 70px;
 }
 
 .divide {
-    padding: 20px;
+    padding: 8px;
+   
+   
 }
 
 .multiply {
-    padding: 20px;
+    padding: 8px;
 }
 
 .subtract {
-    padding: 20px;
+    padding: 8px;
 }
 
 .add {
-    padding: 20px;
+    padding: 8px;
 }
 
-.equal {
-    padding: 20px;
-}
