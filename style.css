@@ -35,13 +35,15 @@ body {
 .display {
     display:flex;
     flex-direction: row;
+    justify-content: flex-end;
     border-bottom: 10px;
     border-color: black;
     border-style: inherit;
     margin-bottom: 15px;
     width: 280px;
-    background-color: darkgrey;
+    background-color: rgb(86, 194, 194);
     font-size: 30px;
+    border-radius: 5px;
 
 }
 

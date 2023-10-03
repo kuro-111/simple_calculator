@@ -62,6 +62,15 @@ function clickButton(event) {
           default:
      }
 
+     if (opClass === "clearB") {
+          calcDisplay.textContent = `0`;
+          num1 = null;
+          strNum1 = "";
+          num2 = null;
+          strNum2 = "";
+          operation = false;
+     }
+
      //store first number input, concating onto outside string until an operation btn is pressed
      if (numClass === "numero" && operation == false) {
           strNum1 = strNum1 + numKey;
