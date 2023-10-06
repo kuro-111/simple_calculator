@@ -11,6 +11,8 @@ function numInput(numKey) {
      }
 }
 
+// (((12 + 4) - 10) * 2) = 12
+//( n1 + n2 ) - (result - n3) * (result * 2)
 function arithmetic(num1, operator, num2) {
      if (operator === "divide") {
           const divide = num1 / num2;
@@ -62,6 +64,7 @@ function clickButton(event) {
           default:
      }
 
+     //clear button
      if (opClass === "clearB") {
           calcDisplay.textContent = `0`;
           num1 = null;
@@ -71,6 +74,15 @@ function clickButton(event) {
           operation = false;
      }
 
+     if (operation == true && num2 >= 0 && opClass === "operation") {
+          console.log("oops, I shouldn't be here");
+          calcDisplay.textContent = `${num1}${symbol}${num2}${symbol}`;
+          num1 = arithmetic(num1, operator, num2);
+          num2 = null;
+          strNum2 = "";
+          console.log("you're here");
+     }
+
      //store first number input, concating onto outside string until an operation btn is pressed
      if (numClass === "numero" && operation == false) {
           strNum1 = strNum1 + numKey;
@@ -78,6 +90,7 @@ function clickButton(event) {
           calcDisplay.textContent = `${num1}`;
      } else if (numClass === "numero" && operation == true) {
           strNum2 = strNum2 + numKey;
+          num2 != null;
           num2 = numInput(strNum2);
           calcDisplay.textContent = `${num1}${symbol}${num2}`;
      }
