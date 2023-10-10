@@ -3,6 +3,15 @@ const buttons = document.querySelectorAll("button");
 console.log(buttons);
 buttons.forEach((button) => button.addEventListener("click", clickButton));
 
+let num1;
+let strNum1 = "";
+let operator = "";
+let num2;
+let strNum2 = "";
+let operation = false;
+let result;
+let symbol = "";
+
 function numInput(numKey) {
      {
           let num = 0;
@@ -29,18 +38,10 @@ function arithmetic(num1, operator, num2) {
      }
 }
 
-let num1;
-let strNum1 = "";
-let operator = "";
-let num2;
-let strNum2 = "";
-let operation = false;
-let result;
-let symbol = "";
+//Make a function to randomize background color for buttons when hover
+function rainbow(button) {}
 
-//make an input variable and keep track of user input next --to continue
-//display the inputs on the html
-
+//Calculator function
 function clickButton(event) {
      const numClass = event.target.classList.value;
      const numKey = event.target.attributes["data-key"].value;
@@ -66,7 +67,6 @@ function clickButton(event) {
 
      //clear button
      if (opClass === "clearB") {
-          calcDisplay.textContent = `0`;
           num1 = null;
           strNum1 = "";
           num2 = null;
@@ -75,8 +75,6 @@ function clickButton(event) {
      }
 
      if (operation == true && num2 >= 0 && opClass === "operation") {
-          console.log("oops, I shouldn't be here");
-          calcDisplay.textContent = `${num1}${symbol}${num2}${symbol}`;
           num1 = arithmetic(num1, operator, num2);
           num2 = null;
           strNum2 = "";
@@ -87,12 +85,10 @@ function clickButton(event) {
      if (numClass === "numero" && operation == false) {
           strNum1 = strNum1 + numKey;
           num1 = numInput(strNum1);
-          calcDisplay.textContent = `${num1}`;
      } else if (numClass === "numero" && operation == true) {
           strNum2 = strNum2 + numKey;
           num2 != null;
           num2 = numInput(strNum2);
-          calcDisplay.textContent = `${num1}${symbol}${num2}`;
      }
 
      console.log(num1);
@@ -101,7 +97,6 @@ function clickButton(event) {
      if (opClass === "operation" && num1 >= 0) {
           operation = true;
           operator = opKey;
-          calcDisplay.textContent = `${num1}${symbol}`;
           console.log(operator);
      }
 
@@ -113,10 +108,30 @@ function clickButton(event) {
           result = arithmetic(num1, operator, num2);
           console.log(result);
           num1 = result;
-          calcDisplay.textContent = `${num1}`;
           num2 = null;
           strNum2 = "";
           console.log(num2);
+     }
+
+     //Set display to not add the initial "0" when imputting num
+     if (calcDisplay.textContent == "0") {
+          calcDisplay.textContent = "";
+     }
+
+     //Set the display for calculator
+     if (
+          opKey == "divide" ||
+          opKey == "multiply" ||
+          opKey == "add" ||
+          opKey == "subtract"
+     ) {
+          calcDisplay.textContent += `${symbol}`;
+     } else if (opKey == "equal") {
+          calcDisplay.textContent = `${result}`;
+     } else if (opKey == "clear") {
+          calcDisplay.textContent = `0`;
+     } else {
+          calcDisplay.textContent += `${opKey}`;
      }
 
      console.log(num1);
