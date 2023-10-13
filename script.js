@@ -2,6 +2,12 @@
 const buttons = document.querySelectorAll("button");
 console.log(buttons);
 buttons.forEach((button) => button.addEventListener("click", clickButton));
+buttons.forEach((button) => button.addEventListener("mouseenter", rainbow));
+buttons.forEach((button) =>
+     button.addEventListener("mouseleave", (event) => {
+          event.target.style.backgroundColor = "white";
+     })
+);
 
 let num1;
 let strNum1 = "";
@@ -39,7 +45,10 @@ function arithmetic(num1, operator, num2) {
 }
 
 //Make a function to randomize background color for buttons when hover
-function rainbow(button) {}
+function rainbow(event) {
+     let rgb = "#" + Math.random().toString(16).substr(-6);
+     event.target.style.backgroundColor = rgb;
+}
 
 //Calculator function
 function clickButton(event) {
@@ -74,6 +83,7 @@ function clickButton(event) {
           operation = false;
      }
 
+     //be able to compute more than one operation at the same time
      if (operation == true && num2 >= 0 && opClass === "operation") {
           num1 = arithmetic(num1, operator, num2);
           num2 = null;
@@ -111,6 +121,10 @@ function clickButton(event) {
           num2 = null;
           strNum2 = "";
           console.log(num2);
+     } else if (num2 == null && operation == false && opKey === "equal") {
+          console.log("I am here.");
+          calcDisplay.textContent == `${num1}`;
+          return;
      }
 
      //Set display to not add the initial "0" when imputting num
