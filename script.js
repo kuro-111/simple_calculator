@@ -1,6 +1,5 @@
 //make buttons work
 const buttons = document.querySelectorAll("button");
-console.log(buttons);
 buttons.forEach((button) => button.addEventListener("click", clickButton));
 buttons.forEach((button) => button.addEventListener("mouseenter", rainbow));
 buttons.forEach((button) =>
@@ -18,16 +17,26 @@ let operation = false;
 let result;
 let symbol = "";
 
+/**
+ * Takes in a string, and parses it into a floating point number
+ *
+ * @param {string} numKey - String to parse into num
+ * @returns {number} Parsed floating point number
+ */
 function numInput(numKey) {
-     {
-          let num = 0;
-          num = parseInt(numKey);
-          return num;
-     }
+     let num = 0;
+     num = parseFloat(numKey);
+     return num;
 }
 
-// (((12 + 4) - 10) * 2) = 12
-//( n1 + n2 ) - (result - n3) * (result * 2)
+/**
+ * takes in two number variable and a string and performs math fundamental operations
+ *
+ * @param {number} num1
+ * @param {string} operator
+ * @param {number} num2
+ * @returns {number} Computed integer
+ */
 function arithmetic(num1, operator, num2) {
      if (operator === "divide") {
           const divide = num1 / num2;
@@ -44,13 +53,23 @@ function arithmetic(num1, operator, num2) {
      }
 }
 
-//Make a function to randomize background color for buttons when hover
+/**
+ * Change the background of the buttons into random colors during hover
+ *
+ * @param {object} event
+ * @returns {*} Doesn't return anything
+ */
 function rainbow(event) {
      let rgb = "#" + Math.random().toString(16).substr(-6);
      event.target.style.backgroundColor = rgb;
 }
 
-//Calculator function
+/**
+ * Takes in user inputs and handles calculation, number parsing, displaying results, rounding off result
+ * is a calculator
+ * @param {object} event
+ * @returns {*} doesn't return anything
+ */
 function clickButton(event) {
      const numClass = event.target.classList.value;
      const numKey = event.target.attributes["data-key"].value;
@@ -58,6 +77,7 @@ function clickButton(event) {
      const opKey = event.target.attributes["data-key"].value;
      const calcDisplay = document.querySelector(".display");
 
+     // determine the symbols of the operators
      switch (opKey) {
           case "divide":
                symbol = `÷`;
@@ -74,7 +94,7 @@ function clickButton(event) {
           default:
      }
 
-     //clear button
+     // check if clear button is pressed, reset display and variables
      if (opClass === "clearB") {
           num1 = null;
           strNum1 = "";
@@ -83,56 +103,51 @@ function clickButton(event) {
           operation = false;
      }
 
-     //be able to compute more than one operation at the same time
+     // enable computation of more than one operation at the same time
      if (operation == true && num2 >= 0 && opClass === "operation") {
           num1 = arithmetic(num1, operator, num2);
           num2 = null;
           strNum2 = "";
-          console.log("you're here");
      }
 
-     //store first number input, concating onto outside string until an operation btn is pressed
+     // store first number input, concating onto outside string until an operation btn is pressed
      if (numClass === "numero" && operation == false) {
           strNum1 = strNum1 + numKey;
           num1 = numInput(strNum1);
-     } else if (numClass === "numero" && operation == true) {
+     }
+     // store second number input when operation has been pressed
+     else if (numClass === "numero" && operation == true) {
           strNum2 = strNum2 + numKey;
           num2 != null;
           num2 = numInput(strNum2);
      }
 
-     console.log(num1);
-
-     // once operation button is pressed, move onto value 2
+     // check if operation button is pressed, move onto value 2
      if (opClass === "operation" && num1 >= 0) {
           operation = true;
           operator = opKey;
-          console.log(operator);
      }
 
-     console.log(operation);
-     console.log(num2);
-     // once equal button is pressed, compute the values and store computed value as value 1 while resetting 2nd value
+     // check if equal button is pressed, compute the values and store computed value as value 1 while resetting 2nd value
      if (num1 >= 0 && num2 >= 0 && opKey === "equal") {
-          console.log("I made it!");
           result = arithmetic(num1, operator, num2);
-          console.log(result);
+          result = Math.round(result * 10) / 10;
           num1 = result;
           num2 = null;
           strNum2 = "";
-          console.log(num2);
-     } else if (num2 == null && operation == false && opKey === "equal") {
-          console.log("I am here.");
+     }
+     // if equal button is pressed with no operator and 2nd variable, display the 1st variable
+     else if (num2 == null && operation == false && opKey === "equal") {
           calcDisplay.textContent == `${num1}`;
           return;
      }
 
-     //Set display to not add the initial "0" when imputting num
+     // Set display to not add the initial "0" when imputting num
      if (calcDisplay.textContent == "0") {
           calcDisplay.textContent = "";
      }
 
-     //Set the display for calculator
+     // Set the display for operators, result, clear, and numbers for calculator
      if (
           opKey == "divide" ||
           opKey == "multiply" ||
@@ -147,12 +162,4 @@ function clickButton(event) {
      } else {
           calcDisplay.textContent += `${opKey}`;
      }
-
-     console.log(num1);
-
-     // Display numbers and operator as they are pressed
-
-     // Do your operation with 3 variables arithmetic()
-
-     // Update display with result
 }
